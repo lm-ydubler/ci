@@ -114,7 +114,7 @@ runs:
       shell: bash
       working-directory: pack
       run: |
-        export PACK_PYTHON_VERSIONS=$(${CI_DIR}/utils/extract_from_yaml.py pack.yaml python_versions)
+        export PACK_PYTHON_VERSIONS=$(${VIRTUALENV_DIR}/bin/python ${CI_DIR}/utils/extract_from_yaml.py pack.yaml python_versions)
         export PACK_PYTHON_SUPPORTED=$(echo ${PACK_PYTHON_VERSIONS} | jq 'any(.[]; . == "${{ inputs.python-version-short[0] }}")'
         echo "PACK_PYTHON_VERSIONS=${PACK_PYTHON_VERSIONS}" | tee -a ${GITHUB_ENV}
         echo "PACK_PYTHON_SUPPORTED=${PACK_PYTHON_SUPPORTED}" | tee -a ${GITHUB_ENV}
